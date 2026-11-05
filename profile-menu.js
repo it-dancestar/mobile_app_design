@@ -33,6 +33,10 @@ menuOptions.addEventListener('click', (event) => {
   if (!option) return;
   closeProfileMenu();
   menuToggle.focus();
-  // Hook these actions into profile navigation and authentication when added.
+  if (option.dataset.action === 'profile-information') {
+    window.location.assign('profile-information.html');
+    return;
+  }
+  // Authentication can listen for the logout action when added.
   profileMenu.dispatchEvent(new CustomEvent(option.dataset.action, { bubbles: true }));
 });

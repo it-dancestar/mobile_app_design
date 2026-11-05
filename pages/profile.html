@@ -8,7 +8,7 @@
     <script src="../events.js" defer></script>
     <script src="../profile-menu.js" defer></script>
   </head>
-  <body>
+  <body class="profile-page">
     <div class="mobile-screen">
       <div class="screen-scroll">
       <header class="app-header">
@@ -51,13 +51,19 @@
         <section class="content-section" aria-labelledby="qualifiers-title">
           <h2 id="qualifiers-title">Qualifiers</h2>
           <div class="section-content qualifier-image-list" id="qualifiers-content">
-            <a class="qualifier-image-card" href="live.html">
+            <a class="qualifier-image-card" data-competition="portugal" href="portugal-qualifier.html?from=profile.html">
               <img src="../assets/porto1-1.jpg" alt="" loading="lazy">
-              <span>Portugal Qualifier</span>
+              <span class="qualifier-image-details">
+                <span>Portugal Qualifier</span>
+                <span class="qualifier-image-date">13th February 2027</span>
+              </span>
             </a>
-            <a class="qualifier-image-card" href="schedule.html">
+            <a class="qualifier-image-card" data-competition="slovakia" href="slovakia-qualifier.html?from=profile.html">
               <img src="../assets/bratislava1.jpg" alt="" loading="lazy">
-              <span>Slovakia Qualifier</span>
+              <span class="qualifier-image-details">
+                <span>Slovakia Qualifier</span>
+                <span class="qualifier-image-date">5th - 7th March 2027</span>
+              </span>
             </a>
           </div>
         </section>

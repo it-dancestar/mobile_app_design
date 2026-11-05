@@ -271,6 +271,10 @@ body {
   padding: 18px 0;
   border-top: 1px solid #222;
 }
+/* Empty Account sections fit their message so the next section stays close. */
+.content-section:has(.unavailable-text) {
+  min-height: 0;
+}
 .content-section h2 {
   margin: 0 0 14px;
   color: #fff;
@@ -413,6 +417,9 @@ body {
 .qualifier-image-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .qualifier-image-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 30%, #000b); }
 .qualifier-image-card > span { position: relative; z-index: 1; font-size: 5.2cqw; font-weight: 900; text-transform: uppercase; }
+/* Account qualifier photo cards: competition date below the title in its shared color. */
+.qualifier-image-details { display: grid; gap: 1.5cqw; }
+.qualifier-image-date { color: var(--competition-color); font-size: 3cqw; font-weight: 700; text-transform: none; }
 .qualifier-image-card:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
 .qualifier-image-card:hover::after { background: linear-gradient(transparent 30%, #0008); }
 
@@ -474,3 +481,298 @@ body {
 .calendar-all-day { display: grid; grid-template-columns: 36px repeat(var(--days), minmax(0, 1fr)); gap: 2px; margin-bottom: 16px; }
 .calendar-all-day-label { color: #777; font-size: 9px; padding-block: 7px; }
 .calendar-event-badge { display: block; padding: 6px 3px; border-left: 2px solid #9259f7; border-radius: 4px; background: #291d40; color: #e4d6ff; font-size: clamp(8px, 2.2cqw, 12px); line-height: 1.4; overflow-wrap: anywhere; }
+
+/* Shared competition palette. Set data-competition on a routine or calendar event.
+   World Dance Masters is ready for use when its dates/routines are added. */
+[data-competition='portugal'] { --competition-color: #2dd4bf; }
+[data-competition='slovakia'] { --competition-color: #9259f7; }
+[data-competition='world-dance-masters'] { --competition-color: #fa4447; }
+
+/* Compact routine template: subtle competition color only at the right edge. */
+.routine-button[data-competition] {
+  --accent: var(--competition-color);
+  background: linear-gradient(to left, color-mix(in srgb, var(--competition-color) 24%, #000), #000 38%);
+}
+.routine-button[data-competition]:hover { border-color: var(--competition-color); }
+.routine-button[data-competition]:active { border-color: var(--competition-color); }
+
+/* Home countdown template: inherit the featured competition's shared color. */
+.countdown-card[data-competition] {
+  border-color: color-mix(in srgb, var(--competition-color) 35%, #101010);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--competition-color) 5%, #080808), color-mix(in srgb, var(--competition-color) 23%, #101010));
+}
+.countdown-card[data-competition] .countdown-label { color: var(--competition-color); }
+.countdown-card[data-competition] .countdown-progress { background: color-mix(in srgb, var(--competition-color) 20%, #101010); }
+.countdown-card[data-competition] .countdown-progress span { background: linear-gradient(90deg, var(--competition-color), color-mix(in srgb, var(--competition-color) 35%, #101010)); }
+
+/* Calendar event template: competition colors apply independently of view selection. */
+.calendar-date.has-qualifier[data-competition] {
+  border-color: var(--competition-color);
+  background: color-mix(in srgb, var(--competition-color) 18%, #101010);
+}
+.calendar-date.has-qualifier.is-selected[data-competition] {
+  background: color-mix(in srgb, var(--competition-color) 40%, #101010);
+  box-shadow: inset 0 0 0 1px var(--competition-color);
+}
+.calendar-date[data-competition] .calendar-event-dot { background: var(--competition-color); }
+.calendar-event-entry[data-competition],
+.calendar-event-badge[data-competition] {
+  border-color: var(--competition-color);
+  color: var(--competition-color);
+  background: color-mix(in srgb, var(--competition-color) 15%, #101010);
+}
+
+/* Profile information page: labelled fields, top-right Edit control, and editing actions. */
+.information-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.information-toolbar .page-title { margin: 0; }
+.information-edit, .information-cancel { padding: 8px 16px; border: 1px solid #493166; border-radius: 8px; background: #241932; color: #bc96ff; font: inherit; font-size: 13px; cursor: pointer; }
+.profile-information fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.information-field { display: grid; gap: 8px; padding: 16px 0; border-bottom: 1px solid #222; color: #888; font-size: 12px; }
+.information-field input, .information-field select { width: 100%; min-width: 0; min-height: 36px; padding: 8px 10px; border: 1px solid #333; border-radius: 6px; background: #151515; color: #fff; font: 400 14px Arial, Helvetica, sans-serif; }
+.information-field input:disabled, .information-field select:disabled { opacity: 1; background: transparent; border-color: transparent; padding-left: 0; color: #fff; -webkit-text-fill-color: #fff; }
+.information-field input::placeholder { color: #666; }
+.information-actions:not([hidden]) { display: flex; gap: 10px; margin-top: 18px; }
+.information-cancel { border-color: #333; background: #181818; color: #aaa; }
+.information-status { color: #888; font-size: 12px; }
+.profile-information :focus-visible { outline: 2px solid #9259f7; outline-offset: 2px; }
+
+/* Profile editing controls: neutral white accents and actions pinned above navigation. */
+.information-edit, .information-cancel { border-color: #555; background: #202020; color: #fff; }
+.information-edit:hover, .information-cancel:hover { background: #333; }
+.information-actions:not([hidden]) { flex-shrink: 0; margin: 0; padding: 12px 10px; border-top: 1px solid #222; background: #101010; }
+.information-actions > button { flex: 1; }
+.profile-information :focus-visible { outline-color: #fff; }
+.information-actions :focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Profile information: compact read-only fields and a subtle bottom-right red glow. */
+.profile-information-page .mobile-screen {
+  background: radial-gradient(ellipse at bottom right, #fa44474d 0%, #fa44471f 38%, transparent 85%), #000;
+}
+.profile-information fieldset:disabled .information-field { padding-block: 10px; gap: 5px; }
+.information-status:empty { display: none; }
+.information-cancel:hover,
+.information-cancel:active {
+  color: #ff686b;
+  border-color: #fa4447;
+  background: #391719;
+}
+
+/* Timed competition events: exact start/end positions on the 24-hour timeline.
+   Week view scrolls horizontally so event titles remain readable on mobile. */
+.calendar-agenda-viewport { overflow-x: auto; }
+.calendar-agenda-week { min-width: 740px; }
+.calendar-timeline { position: relative; }
+.calendar-slots { position: absolute; inset: 0 0 0 36px; display: grid; grid-template-columns: repeat(var(--days), minmax(0, 1fr)); pointer-events: none; isolation: isolate; }
+.calendar-slot-column { position: relative; min-width: 0; }
+.calendar-timed-event {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 5px;
+  overflow: hidden;
+  border-left: 3px solid var(--competition-color);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--competition-color) 28%, #151515);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.3;
+  pointer-events: auto;
+}
+.calendar-timed-event strong { font-weight: 600; }
+.calendar-timed-event > span { color: var(--competition-color); font-size: 10px; }
+.calendar-timed-event:focus-visible { outline: 2px solid var(--competition-color); outline-offset: -2px; }
+.calendar-now { z-index: 4; pointer-events: none; }
+
+/* Schedule layout: keep header, view controls, and selected date above the scrolling timeline. */
+.schedule-page .screen-scroll { display: flex; flex-direction: column; overflow: hidden; }
+.schedule-page .app-header { flex-shrink: 0; }
+.schedule-page .calendar { display: flex; flex-direction: column; flex: 1; min-height: 0; padding-bottom: 0; }
+.schedule-page .calendar-views, .schedule-page .calendar-toolbar { flex-shrink: 0; }
+#calendar-content { min-height: 0; flex: 1; overflow: auto; padding-bottom: 16px; }
+.calendar-agenda-viewport { overflow: visible; }
+.calendar-agenda-week { min-width: 0; }
+.calendar-agenda-top { position: sticky; top: 0; z-index: 6; padding-top: 2px; background: #101010; }
+.calendar-agenda-top .calendar-all-day { margin-bottom: 0; padding-bottom: 14px; }
+
+/* Qualifier-day columns fade from the competition color into the dark timeline. */
+.calendar-slot-column[data-competition] {
+  /* 09:00 is 37.5% of the 24-hour timeline; keep earlier hours clear. */
+  background: linear-gradient(to bottom, transparent 37.5%, color-mix(in srgb, var(--competition-color) 17%, transparent) 37.5%, color-mix(in srgb, var(--competition-color) 5%, transparent) 78%, transparent);
+}
+.calendar-day-strip .calendar-date[data-competition] {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--competition-color) 40%, #101010), color-mix(in srgb, var(--competition-color) 12%, #101010));
+}
+.calendar-day-strip .calendar-date.is-selected[data-competition] {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--competition-color) 55%, #101010), color-mix(in srgb, var(--competition-color) 22%, #101010));
+}
+
+/* Seven readable columns within the mobile width; long event details scroll inside their slot. */
+.calendar-agenda-week .calendar-day-strip { gap: 2px; }
+.calendar-agenda-week .calendar-date { border-radius: 7px; }
+.calendar-agenda-week .calendar-date span:first-child { font-size: 2.1cqw; letter-spacing: 0; }
+.calendar-agenda-week .calendar-timed-event { left: 1px; right: 1px; padding: 3px 2px; border-left-width: 2px; font-size: 2.1cqw; overflow-wrap: anywhere; }
+.calendar-agenda-week .calendar-timed-event > span { font-size: 1.9cqw; }
+.calendar-agenda-week .calendar-timed-event strong {
+  display: block;
+  flex-shrink: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.calendar-agenda-week .calendar-event-badge { font-size: 2cqw; padding-inline: 2px; }
+
+/* Qualifier detail page template: full-width photo hero, facts, introduction, and resources. */
+.qualifier-page .mobile-screen { background: #101010; }
+.qualifier-hero { position: relative; display: flex; align-items: flex-end; min-height: 64cqw; padding: 4cqw 3cqw 8cqw; background: linear-gradient(135deg, #30243d, #101010); isolation: isolate; }
+.qualifier-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.qualifier-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 25%, #101010); z-index: -1; }
+.qualifier-hero h1 { margin: 0; color: #fff; font-size: 8.2cqw; line-height: 1.1; font-weight: 400; text-transform: uppercase; }
+.qualifier-back { position: absolute; top: 4cqw; left: 4cqw; padding: 6px 9px; border-radius: 8px; background: #101010aa; color: #ddd; text-decoration: none; font-size: 3.5cqw; font-weight: 700; letter-spacing: .2cqw; }
+.qualifier-details { padding: 0 3cqw 7cqw; }
+.qualifier-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3cqw; }
+.qualifier-fact { display: flex; align-items: center; gap: 3cqw; padding: 4cqw; border-radius: 3cqw; background: #222; min-width: 0; }
+.qualifier-fact svg { flex-shrink: 0; width: 5cqw; height: 5cqw; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.qualifier-fact > div { display: grid; gap: 1cqw; }
+.qualifier-fact span { color: #888; text-transform: uppercase; font-weight: 700; font-size: 2.8cqw; letter-spacing: .3cqw; }
+.qualifier-fact strong { font-size: 4cqw; line-height: 1.2; }
+.qualifier-location { grid-column: 1 / -1; }
+.qualifier-description { font-size: 4cqw; line-height: 1.45; }
+.qualifier-description p { margin: 4cqw 0 0; }
+.qualifier-description p + p { margin-top: 14cqw; }
+.qualifier-resource-section { margin-top: 8cqw; }
+.qualifier-resource-section h2 { margin: 0 0 4cqw; color: #888; text-transform: uppercase; font-size: 3.4cqw; letter-spacing: .4cqw; }
+.qualifier-resource { display: flex; justify-content: space-between; margin: 0; padding: 4cqw; border-radius: 2.8cqw; background: #191919; color: #888; text-decoration: none; font-size: 3.6cqw; }
+a.qualifier-resource { color: var(--competition-color, #ddd); }
+.qualifier-page a:focus-visible { outline: 2px solid var(--competition-color, #fff); outline-offset: 2px; }
+
+/* Qualifier venue links retain the location card appearance. */
+a.qualifier-location { color: #fff; text-decoration: none; }
+a.qualifier-location:hover { background: #2b2b2b; }
+
+/* Overlapping timeline events stack with a small inset and a clear outline. */
+.calendar-timed-event.is-overlapping {
+  border: 1px solid color-mix(in srgb, var(--competition-color) 45%, #fff);
+  border-left: 3px solid var(--competition-color);
+  background: color-mix(in srgb, var(--competition-color) 42%, #202020);
+}
+.calendar-timed-event.is-overlapping:focus-visible { outline: 2px solid var(--competition-color); outline-offset: -2px; }
+
+/* Day-view event photos: artwork on the left fading to black on the right. */
+.calendar-timed-event.has-event-photo {
+  isolation: isolate;
+  background: #000;
+}
+.calendar-event-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.calendar-timed-event.has-event-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to right, #0003, #0009 45%, #000 88%);
+  pointer-events: none;
+}
+.calendar-timed-event.has-event-photo > strong,
+.calendar-timed-event.has-event-photo > span { text-shadow: 0 1px 3px #000; }
+
+/* Event detail page template: photo hero, category/title, date/time cards, and description. */
+.calendar-timed-event { text-decoration: none; }
+.event-detail-hero { min-height: 82cqw; padding: 5cqw 4cqw 8cqw; }
+.event-detail-hero > img { object-position: center 30%; }
+.event-detail-heading > span { display: block; margin-bottom: 2.5cqw; color: #ddd; font-size: 3cqw; font-weight: 700; letter-spacing: .4cqw; text-transform: uppercase; }
+.event-detail-heading h1 { font-size: 9cqw; font-weight: 800; line-height: 1.05; text-transform: none; overflow-wrap: anywhere; }
+.event-detail-page .qualifier-fact { padding: 3.5cqw; gap: 2cqw; }
+.event-detail-page .qualifier-fact strong { font-size: 3.5cqw; }
+.event-detail-page .qualifier-description .event-description-placeholder { margin-top: 5cqw; color: #888; }
+.event-qualifier-link { display: flex; justify-content: space-between; margin-top: 6cqw; padding: 4cqw; border-radius: 12px; background: #222; color: var(--competition-color); text-decoration: none; font-size: 3.5cqw; }
+
+/* Event detail results: section beneath the description with an empty-state message. */
+.event-results { margin-top: 7cqw; }
+.event-results h2 { margin: 0 0 4cqw; color: #888; font-size: 3.4cqw; font-weight: 700; letter-spacing: .4cqw; text-transform: uppercase; }
+
+/* Subtle contact verification flags aligned to the far right of each field label. */
+.information-field-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.verification-flag { padding: 2px 6px; border: 1px solid #ffffff14; border-radius: 4px; color: #858e88; font-size: 10px; font-weight: 400; }
+.verification-flag[data-verified='false'] { color: #a08b7a; }
+
+/* News tab template: category pills, featured story, and compact latest-news cards. */
+.news-page .mobile-screen { background: #101010; }
+.news-title { margin: 0; font-size: 5cqw; font-weight: 800; letter-spacing: .15cqw; text-transform: uppercase; }
+.news-content { padding: 0 3cqw 7cqw; }
+.news-filters { display: flex; gap: 2cqw; margin-bottom: 3cqw; }
+.news-filters button { padding: 2.2cqw 3.6cqw; border: 0; border-radius: 30px; background: #222; color: #fff; font: 700 3.5cqw Arial, sans-serif; cursor: pointer; }
+.news-filters button[aria-pressed='true'] { background: #9259f7; }
+/* Exact featured artwork/card from the supplied mockup; accessible title remains in HTML. */
+.news-feature { display: block; width: 100%; aspect-ratio: 1107 / 720; padding: 0; border: 0; border-radius: 4cqw; background: #191919 url('assets/news-feature-reference.png') center 24.183% / 106.504% auto no-repeat; cursor: pointer; }
+.news-latest { margin-top: 4cqw; }
+.news-latest h2 { display: flex; align-items: center; gap: 2cqw; margin: 0 0 4cqw; font-size: 3.5cqw; font-weight: 800; letter-spacing: .4cqw; text-transform: uppercase; }
+.news-latest h2::before { content: ''; width: .7cqw; height: 4cqw; border-radius: 4px; background: #9259f7; }
+.news-list { display: grid; gap: 3cqw; }
+.news-card { position: relative; display: grid; grid-template-columns: 28% 1fr; width: 100%; min-height: 25.5cqw; overflow: hidden; padding: 0; border: 0; border-radius: 3cqw; background: #191919; color: #fff; font: inherit; text-align: left; cursor: pointer; }
+.news-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: #9259f7; }
+.news-card-art { background: #222; }
+.news-card-content { display: flex; flex-direction: column; min-width: 0; padding: 2.8cqw 3cqw; }
+.news-category { color: #9259f7; font-size: 2.8cqw; font-weight: 800; letter-spacing: .3cqw; text-transform: uppercase; }
+.news-card-title { margin-top: 1cqw; font-size: 3.8cqw; line-height: 1.35; font-weight: 700; }
+.news-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 3cqw; color: #888; font-size: 3cqw; }
+.news-card-footer > span { font-weight: 700; white-space: nowrap; }
+.news-page button:focus-visible { outline: 2px solid #bb96ff; outline-offset: 3px; }
+.news-card:hover { background: #202020; }
+/* News article preview dialog; full article copy can be added in news.js. */
+.news-dialog { width: min(90vw, 400px); max-height: 80svh; padding: 24px; border: 1px solid #3d2b57; border-radius: 18px; background: #191919; color: #fff; }
+.news-dialog::backdrop { background: #000b; }
+.news-dialog .news-category { font-size: 11px; }
+.news-dialog h2 { font-size: 22px; line-height: 1.3; }
+.news-dialog-date, .news-dialog-body { color: #999; font-size: 13px; line-height: 1.6; }
+.news-close { display: block; margin: 0 0 12px auto; width: 32px; height: 32px; border: 1px solid #444; border-radius: 50%; background: #222; color: #fff; font-size: 22px; cursor: pointer; }
+
+/* News article page template: qualifier-style reading layout with no photo banner. */
+.news-card, .news-feature { text-decoration: none; }
+.news-page a:focus-visible { outline: 2px solid #bb96ff; outline-offset: 3px; }
+.news-article-header { position: relative; padding: 20cqw 3cqw 4cqw; }
+.news-article-header .news-category { display: block; margin-bottom: 3cqw; }
+.news-article-header h1 { margin: 0; font-size: 7cqw; font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; }
+.news-article-date { margin: 4cqw 0 0; color: #888; font-size: 3.2cqw; }
+.news-article-body p + p { margin-top: 7cqw; }
+
+/* Live tab template: photo-backed event rows, status labels, and special qualifier rows. */
+.live-page .mobile-screen { background: #101010; }
+.live-page-title { margin: 0; font-size: 5cqw; font-weight: 800; letter-spacing: .15cqw; text-transform: uppercase; }
+.live-content { padding: 0 3cqw 7cqw; }
+.live-event-list, .live-qualifier-list { display: grid; gap: 2.5cqw; }
+.live-card { position: relative; isolation: isolate; display: flex; align-items: center; gap: 2cqw; min-height: 25.5cqw; overflow: hidden; padding: 4cqw 4cqw 4cqw 28.5cqw; border-radius: 3cqw; background: #191919; color: #fff; text-decoration: none; }
+/* Crop each supplied reference to its artwork region; card text stays editable HTML. */
+.live-card-art { position: absolute; inset: 0 auto 0 0; z-index: -1; width: 25.5cqw; background-size: 393% 852%; background-position: 4.1% var(--photo-y); mask-image: linear-gradient(to right, #000 45%, transparent 100%); }
+.live-event-art { background-image: url('assets/live-events-reference.png'); }
+.live-qualifier-art { background-image: url('assets/live-qualifiers-reference.png'); }
+.live-card-content { display: grid; gap: 1.4cqw; flex: 1; min-width: 0; }
+.live-card-category { color: var(--live-accent); font-size: 2.8cqw; font-weight: 800; letter-spacing: .35cqw; text-transform: uppercase; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.live-card-title { font-size: 4cqw; font-weight: 800; line-height: 1.15; text-transform: uppercase; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.live-card-date { color: #888; font-size: 3cqw; line-height: 1.3; }
+.live-card-status { flex-shrink: 0; color: #888; font-size: 2.7cqw; font-weight: 800; letter-spacing: .35cqw; text-transform: uppercase; }
+.live-special-events { margin-top: 6cqw; }
+.live-special-events h2 { margin: 0 0 3.5cqw; font-size: 3.5cqw; letter-spacing: .4cqw; text-transform: uppercase; }
+.live-card:hover { background: #202020; }
+.live-card:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
+
+/* Live archive: ended events sit below active qualifiers with a divider and muted colors. */
+.live-content > .live-special-events { margin-top: 0; }
+.live-ended-events { margin-top: 6cqw; padding-top: 5cqw; border-top: 1px solid #383838; }
+.live-ended-events h2 { margin: 0 0 3.5cqw; color: #888; font-size: 3.5cqw; letter-spacing: .4cqw; text-transform: uppercase; }
+.live-ended-list { display: grid; gap: 2.5cqw; }
+.live-ended-events .live-card { background: #171717; color: #aaa; }
+.live-ended-events .live-card-art { filter: grayscale(.8); opacity: .6; }
+.live-ended-events .live-card-category { color: #888; }
+.live-ended-events .live-card-date, .live-ended-events .live-card-status { color: #777; }
+.live-ended-events .live-card:hover { background: #222; }
