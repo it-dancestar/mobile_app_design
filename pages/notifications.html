@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notifications | DanceStar</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body class="notifications-page">
+    <div class="mobile-screen">
+      <div class="screen-scroll">
+        <header class="app-header">
+          <button class="header-button" type="button" aria-label="Notifications" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16V9a7 7 0 0 1 14 0v7l2 3H3ZM9 21a3 3 0 0 0 6 0M10 2a2 2 0 0 1 4 0"/></svg>
+          </button>
+          <img class="app-logo" src="../assets/dancestar_logo.png" alt="DanceStar" width="226" height="165">
+          <a class="header-button" href="settings.html" aria-label="Settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3 1-2h4l1 2 2 1 2-.2 2 3-1 2v3l1 2-2 3-2-.2-2 1-1 3h-4l-1-3-2-1-2 .2-2-3 1-2V9L3 7l2-3 2 .2Z" transform="translate(0 1) scale(1 .95)"/><circle cx="12" cy="12" r="3.5"/></svg>
+          </a>
+        </header>
+        <main class="app-content notifications-content">
+          <h1 class="page-title">Notifications</h1>
+          <div class="notification-list">
+            <a class="notification-card" data-competition="portugal" href="notification-payment-reminder.html?from=notifications.html">
+              <h2>Payment reminder</h2>
+              <div class="notification-footer"><time datetime="2026-11-10">NOV 10 2026</time><span>Read &rarr;</span></div>
+            </a>
+            <a class="notification-card" data-competition="portugal" href="notification-music-reminder.html?from=notifications.html">
+              <h2>Music reminder</h2>
+              <div class="notification-footer"><time datetime="2026-11-06">NOV 6 2026</time><span>Read &rarr;</span></div>
+            </a>
+            <a class="notification-card" data-competition="slovakia" href="notification-routine-oct-5.html?from=notifications.html">
+              <h2>You were added to the routine!</h2>
+              <div class="notification-footer"><time datetime="2026-10-05">OCT 5 2026</time><span>Read &rarr;</span></div>
+            </a>
+            <a class="notification-card" data-competition="portugal" href="notification-routine-oct-1.html?from=notifications.html">
+              <h2>You were added to the routine!</h2>
+              <div class="notification-footer"><time datetime="2026-10-01">OCT 1 2026</time><span>Read &rarr;</span></div>
+            </a>
+            <a class="notification-card notification-welcome" href="notification-welcome.html?from=notifications.html">
+              <h2>Welcome to Dancestar portal!</h2>
+              <div class="notification-footer"><time datetime="2026-10-01">OCT 1 2026</time><span>Read &rarr;</span></div>
+            </a>
+
+          </div>
+        </main>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-8 9 8v11h-6v-6H9v6H3Z"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="schedule.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="18" rx="1"/><path d="M7 2v5M17 2v5M2 9h20M7 13h.01M12 13h.01M17 13h.01M7 18h.01M12 18h.01M17 18h.01"/></svg>
+          <span>Schedule</span>
+        </a>
+        <a href="news.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16V9a7 7 0 0 1 14 0v7l2 3H3ZM9 21a3 3 0 0 0 6 0M10 2a2 2 0 0 1 4 0"/></svg>
+          <span>News</span>
+        </a>
+        <a href="live.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 8 6 4-6 4ZM6 7a8 8 0 0 0 0 10M3 4a12 12 0 0 0 0 16M18 7a8 8 0 0 1 0 10M21 4a12 12 0 0 1 0 16"/></svg>
+          <span>Live</span>
+        </a>
+        <a href="profile.html" >
+          <svg class="account-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="5"/><path d="M2 23a10 10 0 0 1 20 0Z"/></svg>
+          <span>Account</span>
+        </a>
+      </nav>
+    </div>
+  </body>
+</html>

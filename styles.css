@@ -34,6 +34,7 @@ body {
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: #333 #000;
+  scrollbar-gutter: stable;
 }
 /* Shared bottom navigation: icons, labels, and purple active-page marker. */
 .bottom-nav {
@@ -370,11 +371,32 @@ body {
 }
 
 /* Home screen, scaled to the mobile mockup width. */
-.home-page /* Shared 9:16 mobile frame and scrollable content area. */
-.mobile-screen { background: #101010; }
-.home-page /* Shared header: centered logo, notifications button, and settings button. */
-.app-header { padding: 6cqw 3cqw 4cqw; }
-.home-page .app-logo { width: 18cqw; }
+.home-page .mobile-screen,
+.profile-page .mobile-screen { background: #101010; }
+/* Identical header spacing aligns notifications and settings on Home and Account. */
+.home-page .app-header,
+.profile-page .app-header,
+.profile-information-page .app-header,
+.schedule-page .app-header,
+.live-page .app-header,
+.news-page .app-header { padding: 6cqw 3cqw 4cqw; }
+/* Text headers reserve the same content height as the Home/Account logo. */
+.schedule-page .app-header,
+.live-page .app-header,
+.news-page .app-header { grid-template-rows: calc(18cqw * 165 / 226); }
+/* Home and Account share identical logo sizing and header controls. */
+.home-page .app-logo,
+.profile-page .app-logo,
+.profile-information-page .app-logo {
+  width: 18cqw;
+  height: auto;
+  aspect-ratio: 226 / 165;
+}
+/* Align the first content row beneath the shared Home/Account header. */
+.profile-page .profile { margin: 0 3cqw 20px; }
+.profile-page .app-content,
+.profile-information-page .app-content { padding-inline: 3cqw; }
+.profile-information-page .app-content { padding-top: 0; }
 .home-content { padding: 0 3cqw 6cqw; }
 .home-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4cqw; }
 .home-section-heading h1, .home-section-heading h2 { margin: 0; text-transform: uppercase; font-weight: 800; }
@@ -546,7 +568,7 @@ body {
 
 /* Profile information: compact read-only fields and a subtle bottom-right red glow. */
 .profile-information-page .mobile-screen {
-  background: radial-gradient(ellipse at bottom right, #fa44474d 0%, #fa44471f 38%, transparent 85%), #000;
+  background: radial-gradient(ellipse at bottom right, #fa44474d 0%, #fa44471f 38%, transparent 85%), #101010;
 }
 .profile-information fieldset:disabled .information-field { padding-block: 10px; gap: 5px; }
 .information-status:empty { display: none; }
@@ -776,3 +798,59 @@ a.qualifier-location:hover { background: #2b2b2b; }
 .live-ended-events .live-card-category { color: #888; }
 .live-ended-events .live-card-date, .live-ended-events .live-card-status { color: #777; }
 .live-ended-events .live-card:hover { background: #222; }
+
+/* Notifications page shares Home's header geometry; its bell is inactive and muted. */
+.notifications-page .mobile-screen { background: #101010; }
+.notifications-page .app-header { padding: 6cqw 3cqw 4cqw; }
+.notifications-page .app-logo { width: 18cqw; height: auto; aspect-ratio: 226 / 165; }
+.notifications-content { padding: 0 3cqw 24px; }
+.notifications-content .page-title { margin-top: 0; }
+.header-button { text-decoration: none; }
+.header-button:disabled { color: #666; background: #191919; border-color: #282828; cursor: default; }
+.header-button:disabled:hover { background: #191919; }
+
+/* Notification template: news-style post card without an artwork column. */
+.notification-list { display: grid; gap: 3cqw; }
+.notification-card { position: relative; display: flex; flex-direction: column; overflow: hidden; min-height: 25.5cqw; padding: 3cqw 4cqw; border-radius: 3cqw; background: #191919; }
+.notification-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: var(--competition-color, #9259f7); }
+.notification-welcome { --competition-color: #fa4447; }
+.notification-card h2 { margin: 0 0 4cqw; color: #fff; font-size: 3.8cqw; line-height: 1.35; font-weight: 700; }
+.notification-card time { color: #888; font-size: 3cqw; }
+.notification-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 3cqw; color: #888; font-size: 3cqw; }
+.notification-footer > span { font-weight: 700; white-space: nowrap; }
+
+/* Compact notification cards with full-card links to their individual messages. */
+.notification-card { min-height: 19cqw; color: inherit; text-decoration: none; }
+.notification-card h2 { margin-bottom: 2cqw; }
+.notification-footer { padding-top: 1cqw; }
+.notification-card:hover { background: #202020; }
+.notification-card:focus-visible { outline: 2px solid var(--competition-color, #fff); outline-offset: 3px; }
+
+/* Settings screen: shared Home header geometry, permission switch, and legal cards. */
+.settings-page .mobile-screen { background: #101010; }
+.settings-page .app-header { padding: 6cqw 3cqw 4cqw; }
+.settings-page .app-logo { width: 18cqw; height: auto; aspect-ratio: 226 / 165; }
+.settings-content { padding: 0 3cqw 6cqw; }
+.settings-content h1, .settings-content h2 { margin: 0 0 3.5cqw; color: #fff; font-size: 5.5cqw; font-weight: 400; line-height: 1.2; }
+.settings-content section + section { margin-top: 6.5cqw; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 18cqw; padding: 4cqw; border-radius: 2cqw; background: #222; color: #fff; font-size: 4.3cqw; text-decoration: none; cursor: pointer; }
+.settings-legal-list { display: grid; gap: 3cqw; }
+.settings-row > svg { width: 5cqw; height: 5cqw; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.settings-row:hover { background: #292929; }
+.settings-row:focus-visible, .settings-switch:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.settings-switch { appearance: none; position: relative; flex-shrink: 0; width: 16cqw; height: 7cqw; margin: 0; border: 0; border-radius: 20px; background: #606064; cursor: pointer; }
+.settings-switch::before { content: ''; position: absolute; top: .5cqw; left: .5cqw; width: 9cqw; height: 6cqw; border-radius: 20px; background: #fff; }
+.settings-switch:checked { background: #9259f7; }
+.settings-switch:checked::before { left: 6.5cqw; }
+
+/* Shared page atmosphere: a subtle red glow rising from the bottom of every screen.
+   A pseudo-element preserves each page's background and the stronger Profile information glow. */
+.mobile-screen { position: relative; isolation: isolate; }
+.mobile-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, #fa444724 0%, #fa444710 25%, transparent 60%);
+  pointer-events: none;
+}
