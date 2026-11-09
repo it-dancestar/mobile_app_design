@@ -18,3 +18,6 @@ Buttons without href dispatch an event-select event for custom interactions.
 
 To host on GitHub Pages, push this repository to GitHub, then open Settings > Pages.
 Select Deploy from a branch, choose your branch and / (root), and save.
+
+
+Shareable link: https://it-dancestar.github.io/mobile_app_design/
