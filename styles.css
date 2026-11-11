@@ -1,5 +1,6 @@
 ﻿/* Global theme: default colors and typography. */
 :root {
+  --app-accent: #fa4447;
   color-scheme: dark;
   font-family: Arial, Helvetica, sans-serif;
   background: #000;
@@ -36,7 +37,7 @@ body {
   scrollbar-color: #333 #000;
   scrollbar-gutter: stable;
 }
-/* Shared bottom navigation: icons, labels, and purple active-page marker. */
+/* Shared bottom navigation: icons, labels, and red active-page marker. */
 .bottom-nav {
   display: flex;
   flex-shrink: 0;
@@ -73,7 +74,7 @@ body {
   stroke-linejoin: round;
 }
 .bottom-nav .account-icon { fill: currentColor; stroke: none; }
-.bottom-nav a[aria-current='page'] { color: #9259f7; }
+.bottom-nav a[aria-current='page'] { color: var(--app-accent); }
 .bottom-nav a[aria-current='page']::before {
   content: '';
   position: absolute;
@@ -83,7 +84,7 @@ body {
   height: 3px;
   background: currentColor;
 }
-.bottom-nav a:hover { color: #b58aff; }
+.bottom-nav a:hover { color: #ff8587; }
 .bottom-nav a:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
 
 
@@ -120,7 +121,7 @@ body {
   stroke-linejoin: round;
 }
 .header-button:hover { background: #303030; }
-.header-button:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
+.header-button:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 3px; }
 .app-logo {
   display: block;
   width: 96px;
@@ -231,7 +232,7 @@ body {
 /* Compact routine template (#routine-button-template in pages/profile.html). Rows: age division · dance style · discipline, choreography title, registered qualifier. Independent of the original event template. */
 .routine-list { display: grid; gap: 10px; }
 .routine-button {
-  --accent: #a16aff;
+  --accent: var(--app-accent);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -294,7 +295,7 @@ body {
   gap: 10px;
 }
 .event-button {
-  --accent: #a16aff;
+  --accent: var(--app-accent);
   position: relative;
   isolation: isolate;
   display: flex;
@@ -401,21 +402,21 @@ body {
 .home-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4cqw; }
 .home-section-heading h1, .home-section-heading h2 { margin: 0; text-transform: uppercase; font-weight: 800; }
 .home-section-heading h2 { font-size: 5.5cqw; letter-spacing: .15cqw; }
-.home-section-heading a { color: #9259f7; text-decoration: none; font-size: 3.4cqw; font-weight: 700; }
+.home-section-heading a { color: var(--app-accent); text-decoration: none; font-size: 3.4cqw; font-weight: 700; }
 .live-heading { display: flex; align-items: center; gap: 2cqw; font-size: 3.6cqw; letter-spacing: .4cqw; }
 .live-dot { width: 2cqw; height: 2cqw; border-radius: 50%; background: #df2038; }
 
 
 /* Home countdown card template: start label, days/time, progress bar, and qualifier details. */
-.countdown-card { display: block; padding: 4.3cqw 4.6cqw; border: 1px solid #332052; border-radius: 3cqw; background: linear-gradient(110deg, #0e091e, #2b1b42); text-decoration: none; color: #fff; }
-.countdown-label { color: #9259f7; font-size: 2.9cqw; font-weight: 800; letter-spacing: .5cqw; text-transform: uppercase; }
+.countdown-card { display: block; padding: 4.3cqw 4.6cqw; border: 1px solid #522022; border-radius: 3cqw; background: linear-gradient(110deg, #1e090a, #421b1d); text-decoration: none; color: #fff; }
+.countdown-label { color: var(--app-accent); font-size: 2.9cqw; font-weight: 800; letter-spacing: .5cqw; text-transform: uppercase; }
 .countdown-values { display: flex; align-items: baseline; gap: 1.8cqw; margin: 3.3cqw 0 4.2cqw; white-space: nowrap; }
 .countdown-values strong { font-size: 10cqw; line-height: 1.1; }
 .countdown-days { color: #bbb; font-size: 2.8cqw; text-transform: uppercase; font-weight: 700; letter-spacing: .3cqw; }
 .countdown-divider { margin-inline: 1cqw; color: #555; font-size: 6.5cqw; font-weight: 300; }
 .countdown-clock { font-size: 8cqw; color: #bbb; font-weight: 700; font-variant-numeric: tabular-nums; }
-.countdown-progress { height: .7cqw; background: #35204f; border-radius: 10px; overflow: hidden; }
-.countdown-progress span { display: block; width: 10%; height: 100%; background: linear-gradient(90deg, #9259f7, #452968); border-radius: inherit; }
+.countdown-progress { height: .7cqw; background: #4f2022; border-radius: 10px; overflow: hidden; }
+.countdown-progress span { display: block; width: 10%; height: 100%; background: linear-gradient(90deg, var(--app-accent), #68292c); border-radius: inherit; }
 .countdown-footer { display: flex; align-items: center; justify-content: space-between; gap: 2cqw; margin-top: 2.8cqw; }
 .countdown-footer strong { font-size: 3.5cqw; letter-spacing: .3cqw; text-transform: uppercase; }
 .countdown-footer > span { color: #888; font-size: 3cqw; white-space: nowrap; }
@@ -442,7 +443,7 @@ body {
 /* Account qualifier photo cards: competition date below the title in its shared color. */
 .qualifier-image-details { display: grid; gap: 1.5cqw; }
 .qualifier-image-date { color: var(--competition-color); font-size: 3cqw; font-weight: 700; text-transform: none; }
-.qualifier-image-card:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
+.qualifier-image-card:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 3px; }
 .qualifier-image-card:hover::after { background: linear-gradient(transparent 30%, #0008); }
 
 
@@ -457,21 +458,21 @@ body {
 .qualifier-category { font-size: 2.8cqw; letter-spacing: .3cqw; text-transform: uppercase; font-weight: 800; color: #fa4447; }
 .qualifier-card strong { font-size: 4cqw; letter-spacing: .1cqw; text-transform: uppercase; }
 .qualifier-arrow { display: grid; place-items: center; flex-shrink: 0; width: 7cqw; height: 7cqw; border: 1px solid #333; border-radius: 50%; color: #888; font-size: 4.5cqw; }
-.home-content a:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
+.home-content a:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 3px; }
 .qualifier-card:hover { background: #222; }
 
 
 /* Accessibility utility: hide text visually while keeping it available to screen readers. */
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* Schedule calendar template: month grid, week/day timelines, and purple view/date selection. */
+/* Schedule calendar template: month grid, week/day timelines, and red view/date selection. */
 .schedule-page .mobile-screen { background: #101010; }
 .schedule-title { margin: 0; font-size: 5cqw; text-transform: uppercase; letter-spacing: .15cqw; }
 .calendar { padding: 0 3cqw 6cqw; }
 .calendar button { font-family: inherit; cursor: pointer; }
 .calendar-views { display: flex; gap: 7px; margin-bottom: 16px; }
 .calendar-views button { flex: 1; padding: 10px 4px; border: 1px solid #303030; border-radius: 12px; background: #191919; color: #888; font-size: 13px; }
-.calendar-views button[aria-pressed='true'] { background: #9259f7; border-color: #9259f7; color: #fff; }
+.calendar-views button[aria-pressed='true'] { background: var(--app-accent); border-color: var(--app-accent); color: #fff; }
 .calendar-toolbar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
 .calendar-toolbar h2 { flex: 1; margin: 0; text-align: center; font-size: 3.7cqw; font-weight: 400; }
 .calendar-toolbar button { border: 1px solid #303030; border-radius: 8px; background: #191919; color: #fff; min-height: 32px; padding: 4px 9px; }
@@ -479,9 +480,9 @@ body {
 .calendar-weekday { padding: 8px 0; text-align: center; color: #888; font-size: 2.6cqw; }
 .calendar-date { display: grid; place-content: center; gap: 7px; min-width: 0; min-height: 54px; border: 1px solid #292929; border-radius: 10px; background: #191919; color: #fff; font-size: 3.5cqw; }
 .calendar-date.outside-month { color: #555; background: #131313; }
-.calendar-date[aria-current='date'] { border-color: #9259f7; }
-.calendar-date.is-selected { color: #fff; background: #9259f7; border-color: #9259f7; }
-.calendar button:focus-visible { outline: 2px solid #cbb2ff; outline-offset: 2px; }
+.calendar-date[aria-current='date'] { border-color: var(--app-accent); }
+.calendar-date.is-selected { color: #fff; background: var(--app-accent); border-color: var(--app-accent); }
+.calendar button:focus-visible { outline: 2px solid #ffc1c2; outline-offset: 2px; }
 .calendar-day-strip { display: grid; grid-template-columns: repeat(var(--days), minmax(0, 1fr)); gap: 5px; margin: 0 0 14px 36px; }
 .calendar-day-strip .calendar-date { min-height: 64px; }
 .calendar-day-strip .calendar-date span:first-child { color: #999; font-size: 2.3cqw; text-transform: uppercase; letter-spacing: .2cqw; }
@@ -494,15 +495,15 @@ body {
 .calendar-now::before { content: ''; position: absolute; left: -3px; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: #df2038; }
 
 /* Calendar qualifier dates: inclusive event ranges, month markers, and all-day entries. */
-.calendar-date.has-qualifier { border-color: #9259f7; background: #291d40; }
-.calendar-date.has-qualifier.is-selected { background: #9259f7; }
-.calendar-event-dot { width: 5px; height: 5px; margin: 0 auto; border-radius: 50%; background: #be99ff; }
+.calendar-date.has-qualifier { border-color: var(--app-accent); background: #3b1d1e; }
+.calendar-date.has-qualifier.is-selected { background: var(--app-accent); }
+.calendar-event-dot { width: 5px; height: 5px; margin: 0 auto; border-radius: 50%; background: #ff999c; }
 .calendar-date.is-selected .calendar-event-dot { background: #fff; }
 .calendar-month-events { display: grid; gap: 8px; margin-top: 16px; }
-.calendar-event-entry { padding: 12px; border: 1px solid #614293; border-radius: 10px; background: #291d40; color: #e4d6ff; text-align: left; font-size: 12px; line-height: 1.5; }
+.calendar-event-entry { padding: 12px; border: 1px solid #934244; border-radius: 10px; background: #3b1d1e; color: #ffdedf; text-align: left; font-size: 12px; line-height: 1.5; }
 .calendar-all-day { display: grid; grid-template-columns: 36px repeat(var(--days), minmax(0, 1fr)); gap: 2px; margin-bottom: 16px; }
 .calendar-all-day-label { color: #777; font-size: 9px; padding-block: 7px; }
-.calendar-event-badge { display: block; padding: 6px 3px; border-left: 2px solid #9259f7; border-radius: 4px; background: #291d40; color: #e4d6ff; font-size: clamp(8px, 2.2cqw, 12px); line-height: 1.4; overflow-wrap: anywhere; }
+.calendar-event-badge { display: block; padding: 6px 3px; border-left: 2px solid var(--app-accent); border-radius: 4px; background: #3b1d1e; color: #ffdedf; font-size: clamp(8px, 2.2cqw, 12px); line-height: 1.4; overflow-wrap: anywhere; }
 
 /* Shared competition palette. Set data-competition on a routine or calendar event.
    World Dance Masters is ready for use when its dates/routines are added. */
@@ -547,7 +548,7 @@ body {
 /* Profile information page: labelled fields, top-right Edit control, and editing actions. */
 .information-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
 .information-toolbar .page-title { margin: 0; }
-.information-edit, .information-cancel { padding: 8px 16px; border: 1px solid #493166; border-radius: 8px; background: #241932; color: #bc96ff; font: inherit; font-size: 13px; cursor: pointer; }
+.information-edit, .information-cancel { padding: 8px 16px; border: 1px solid #663133; border-radius: 8px; background: #32191a; color: #ffa3a5; font: inherit; font-size: 13px; cursor: pointer; }
 .profile-information fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 .information-field { display: grid; gap: 8px; padding: 16px 0; border-bottom: 1px solid #222; color: #888; font-size: 12px; }
 .information-field input, .information-field select { width: 100%; min-width: 0; min-height: 36px; padding: 8px 10px; border: 1px solid #333; border-radius: 6px; background: #151515; color: #fff; font: 400 14px Arial, Helvetica, sans-serif; }
@@ -556,7 +557,7 @@ body {
 .information-actions:not([hidden]) { display: flex; gap: 10px; margin-top: 18px; }
 .information-cancel { border-color: #333; background: #181818; color: #aaa; }
 .information-status { color: #888; font-size: 12px; }
-.profile-information :focus-visible { outline: 2px solid #9259f7; outline-offset: 2px; }
+.profile-information :focus-visible { outline: 2px solid var(--app-accent); outline-offset: 2px; }
 
 /* Profile editing controls: neutral white accents and actions pinned above navigation. */
 .information-edit, .information-cancel { border-color: #555; background: #202020; color: #fff; }
@@ -649,7 +650,7 @@ body {
 
 /* Qualifier detail page template: full-width photo hero, facts, introduction, and resources. */
 .qualifier-page .mobile-screen { background: #101010; }
-.qualifier-hero { position: relative; display: flex; align-items: flex-end; min-height: 64cqw; padding: 4cqw 3cqw 8cqw; background: linear-gradient(135deg, #30243d, #101010); isolation: isolate; }
+.qualifier-hero { position: relative; display: flex; align-items: flex-end; min-height: 64cqw; padding: 4cqw 3cqw 8cqw; background: linear-gradient(135deg, #3d2426, #101010); isolation: isolate; }
 .qualifier-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .qualifier-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 25%, #101010); z-index: -1; }
 .qualifier-hero h1 { margin: 0; color: #fff; font-size: 8.2cqw; line-height: 1.1; font-weight: 400; text-transform: uppercase; }
@@ -734,25 +735,25 @@ a.qualifier-location:hover { background: #2b2b2b; }
 .news-content { padding: 0 3cqw 7cqw; }
 .news-filters { display: flex; gap: 2cqw; margin-bottom: 3cqw; }
 .news-filters button { padding: 2.2cqw 3.6cqw; border: 0; border-radius: 30px; background: #222; color: #fff; font: 700 3.5cqw Arial, sans-serif; cursor: pointer; }
-.news-filters button[aria-pressed='true'] { background: #9259f7; }
+.news-filters button[aria-pressed='true'] { background: var(--app-accent); }
 /* Exact featured artwork/card from the supplied mockup; accessible title remains in HTML. */
 .news-feature { display: block; width: 100%; aspect-ratio: 1107 / 720; padding: 0; border: 0; border-radius: 4cqw; background: #191919 url('assets/news-feature-reference.png') center 24.183% / 106.504% auto no-repeat; cursor: pointer; }
 .news-latest { margin-top: 4cqw; }
 .news-latest h2 { display: flex; align-items: center; gap: 2cqw; margin: 0 0 4cqw; font-size: 3.5cqw; font-weight: 800; letter-spacing: .4cqw; text-transform: uppercase; }
-.news-latest h2::before { content: ''; width: .7cqw; height: 4cqw; border-radius: 4px; background: #9259f7; }
+.news-latest h2::before { content: ''; width: .7cqw; height: 4cqw; border-radius: 4px; background: var(--app-accent); }
 .news-list { display: grid; gap: 3cqw; }
 .news-card { position: relative; display: grid; grid-template-columns: 28% 1fr; width: 100%; min-height: 25.5cqw; overflow: hidden; padding: 0; border: 0; border-radius: 3cqw; background: #191919; color: #fff; font: inherit; text-align: left; cursor: pointer; }
-.news-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: #9259f7; }
+.news-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: var(--app-accent); }
 .news-card-art { background: #222; }
 .news-card-content { display: flex; flex-direction: column; min-width: 0; padding: 2.8cqw 3cqw; }
-.news-category { color: #9259f7; font-size: 2.8cqw; font-weight: 800; letter-spacing: .3cqw; text-transform: uppercase; }
+.news-category { color: var(--app-accent); font-size: 2.8cqw; font-weight: 800; letter-spacing: .3cqw; text-transform: uppercase; }
 .news-card-title { margin-top: 1cqw; font-size: 3.8cqw; line-height: 1.35; font-weight: 700; }
 .news-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 3cqw; color: #888; font-size: 3cqw; }
 .news-card-footer > span { font-weight: 700; white-space: nowrap; }
-.news-page button:focus-visible { outline: 2px solid #bb96ff; outline-offset: 3px; }
+.news-page button:focus-visible { outline: 2px solid #ffaaaa; outline-offset: 3px; }
 .news-card:hover { background: #202020; }
 /* News article preview dialog; full article copy can be added in news.js. */
-.news-dialog { width: min(90vw, 400px); max-height: 80svh; padding: 24px; border: 1px solid #3d2b57; border-radius: 18px; background: #191919; color: #fff; }
+.news-dialog { width: min(90vw, 400px); max-height: 80svh; padding: 24px; border: 1px solid #572b2d; border-radius: 18px; background: #191919; color: #fff; }
 .news-dialog::backdrop { background: #000b; }
 .news-dialog .news-category { font-size: 11px; }
 .news-dialog h2 { font-size: 22px; line-height: 1.3; }
@@ -761,7 +762,7 @@ a.qualifier-location:hover { background: #2b2b2b; }
 
 /* News article page template: qualifier-style reading layout with no photo banner. */
 .news-card, .news-feature { text-decoration: none; }
-.news-page a:focus-visible { outline: 2px solid #bb96ff; outline-offset: 3px; }
+.news-page a:focus-visible { outline: 2px solid #ffaaaa; outline-offset: 3px; }
 .news-article-header { position: relative; padding: 20cqw 3cqw 4cqw; }
 .news-article-header .news-category { display: block; margin-bottom: 3cqw; }
 .news-article-header h1 { margin: 0; font-size: 7cqw; font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; }
@@ -786,7 +787,7 @@ a.qualifier-location:hover { background: #2b2b2b; }
 .live-special-events { margin-top: 6cqw; }
 .live-special-events h2 { margin: 0 0 3.5cqw; font-size: 3.5cqw; letter-spacing: .4cqw; text-transform: uppercase; }
 .live-card:hover { background: #202020; }
-.live-card:focus-visible { outline: 2px solid #9259f7; outline-offset: 3px; }
+.live-card:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 3px; }
 
 /* Live archive: ended events sit below active qualifiers with a divider and muted colors. */
 .live-content > .live-special-events { margin-top: 0; }
@@ -812,7 +813,7 @@ a.qualifier-location:hover { background: #2b2b2b; }
 /* Notification template: news-style post card without an artwork column. */
 .notification-list { display: grid; gap: 3cqw; }
 .notification-card { position: relative; display: flex; flex-direction: column; overflow: hidden; min-height: 25.5cqw; padding: 3cqw 4cqw; border-radius: 3cqw; background: #191919; }
-.notification-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: var(--competition-color, #9259f7); }
+.notification-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 1cqw; background: var(--competition-color, var(--app-accent)); }
 .notification-welcome { --competition-color: #fa4447; }
 .notification-card h2 { margin: 0 0 4cqw; color: #fff; font-size: 3.8cqw; line-height: 1.35; font-weight: 700; }
 .notification-card time { color: #888; font-size: 3cqw; }
@@ -840,7 +841,7 @@ a.qualifier-location:hover { background: #2b2b2b; }
 .settings-row:focus-visible, .settings-switch:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .settings-switch { appearance: none; position: relative; flex-shrink: 0; width: 16cqw; height: 7cqw; margin: 0; border: 0; border-radius: 20px; background: #606064; cursor: pointer; }
 .settings-switch::before { content: ''; position: absolute; top: .5cqw; left: .5cqw; width: 9cqw; height: 6cqw; border-radius: 20px; background: #fff; }
-.settings-switch:checked { background: #9259f7; }
+.settings-switch:checked { background: var(--app-accent); }
 .settings-switch:checked::before { left: 6.5cqw; }
 
 /* Shared page atmosphere: a subtle red glow rising from the bottom of every screen.
@@ -853,4 +854,22 @@ a.qualifier-location:hover { background: #2b2b2b; }
   z-index: -1;
   background: linear-gradient(to top, #fa444724 0%, #fa444710 25%, transparent 60%);
   pointer-events: none;
+}
+
+/* Cover the reference artwork's category badge with the shared app accent. */
+.news-feature { position: relative; }
+.news-feature::after {
+  content: 'MAIN / EVENTS';
+  position: absolute;
+  left: 4.3%;
+  top: 46.2%;
+  width: 32.2%;
+  height: 9.5%;
+  display: grid;
+  place-items: center;
+  border-radius: 30px;
+  background: var(--app-accent);
+  color: #fff;
+  font: 800 2.8cqw Arial, sans-serif;
+  letter-spacing: .3cqw;
 }
